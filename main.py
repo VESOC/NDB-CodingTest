@@ -1,26 +1,23 @@
-'''개인 풀이'''
-n = int(input())
-path = input()
-x, y = 1, 1
-for i in path:
-	if i == 'U':
-		if y-1 == 0:
-			continue
-		else:
-			y -= 1
-	elif i == 'D':
-		if y+1 == n:
-			continue
-		else:
-			y += 1
-	elif i == 'L':
-		if x-1 == 0:
-			continue
-		else:
-			x -= 1
-	elif i == 'R':
-		if x+1 == n:
-			continue
-		else:
-			x += 1
-print(y, x)
+def dfs(graph, v, visited):
+	visited[v] = True
+	print(v, end=' ')
+
+	for i in graph[v]:
+		if not visited[i]:
+			dfs(graph, i, visited)
+
+graph = [
+	[],
+	[2, 3, 8],
+	[1, 7],
+	[1, 4, 5],
+	[3, 5],
+	[3, 4], 
+	[7], 
+	[2, 6, 8],
+	[1, 7]
+]
+
+visited = [False] * 9
+
+dfs(graph, 1, visited)
